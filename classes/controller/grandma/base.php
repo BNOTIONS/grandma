@@ -19,17 +19,17 @@ class Controller_Grandma_Base extends Controller {
 	 * @var Facebook configuration
 	 */
 	protected $config;
-	
+
 	public function before() {
 		parent::before();
 		$this->config = Kohana::$config->load('facebook')->{Kohana::$environment};
 		$this->facebook = new Facebook_API($this->config);
 	}
-	
+
 	public function after() {
 		parent::after();
 	}	
-	
-	
-	
+
+
+
 }

@@ -12,7 +12,7 @@
  */
 
 // Include the Facebook PHP SDK Class
-require Kohana::find_file('vendor', 'Facebook_sdk/facebook');
+require Kohana::find_file('vendor', 'facebook_sdk/facebook');
 
 class Facebook_Core extends Facebook {
 	/**
@@ -50,12 +50,11 @@ class Facebook_Core extends Facebook {
 	 * @var batch_data mixed array of variables consisting method and relative_url
 	 * @return mixed returns an array consisting the result of batch api call.
 	 **/
-	
 	public function api_batch($batch_data) {
 		$post_url = self::$DOMAIN_MAP['graph'];
 		
 		$post_data = http_build_query(array(
-			'access_token' => $this->getAccessToken(),
+			'access_token' => $this->get_access_token(),
 			'batch' => json_encode($batch_data)
 		));
 		
@@ -75,7 +74,55 @@ class Facebook_Core extends Facebook {
 		}
 		
 		return $return;
-	} // end of __FUNCTION__
+	}
+	
+	
+
+	###########
+	# WRAPERS #
+	###########
+	
+	/**
+	 * Get the application ID from base Facebook PHP SDK
+	 *
+	 * @return string returns the application ID 
+	 **/	
+	public function get_app_id(){
+		return $this->getAppId();
+	}	
+	
+
+	/**
+	 * Get current user access token
+	 *
+	 * For more detaials view http://developers.facebook.com/docs/authentication/
+	 *
+	 * @return string valid user access token, or false if one could not be determined.
+	 **/	
+	public function get_user_access_token(){
+		return $this->getUserAccessToken();
+	}
+
+	/**
+	 * Get the current access token from base Facebook PHP SDK
+	 *
+	 * @return string returns the access token
+	 **/	
+	public function get_access_token(){
+		return $this->getAccessToken();
+	}	
+
+
+	/**
+	 * Get the login URL from base Facebook PHP SDK
+	 *
+	 * @return string returns login url
+	 **/	
+	public function get_login_url(){
+		return $this->getAccessToken();
+	}	
+
+	
 }
 
 
