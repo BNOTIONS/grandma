@@ -1,6 +1,8 @@
-Grandma 
+Grandma for Kohana 3.2
 ==========================
-
 
 1. Static reference to Facebook class has been removed.
 
+2. moved the 
+	Database::$default = Kohana::$environment;
+   to modules/grandma/init.php from bootstrap.php
